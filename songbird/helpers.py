@@ -5,7 +5,8 @@ from .songbird import Source
 
 
 @overload
-async def ffmpeg(filepath: str, pre_input_args=None, args=None) -> Source: ...
+async def ffmpeg(filepath: str, pre_input_args="", args="-f s16le -ac 2 -ar 48000 -acodec pcm_f32le -") -> Source: ...
+    //args as expected by discord
 
 
 async def ffmpeg(filepath: str, **kwargs) -> Source:
