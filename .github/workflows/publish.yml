@@ -1,11 +1,9 @@
 # Taken from https://github.com/vicky5124/lavasnek_rs/blob/master/.github/workflows/release.yml
 
-name: Release to to PyPi and GitHub
+name: Release to GitHub
 
 on:
-  push:
-    tags:
-      - "*"
+  - push
 
 jobs:
   build_manylinux:
@@ -46,8 +44,8 @@ jobs:
         include:
           # - vers: i686
           #   os: ubuntu-20.04
-          # - vers: aarch64
-          #   os: ubuntu-20.04
+          - vers: aarch64
+            os: ubuntu-20.04
           # - vers: auto64
           #   os: ubuntu-20.04
           - vers: arm64
@@ -70,7 +68,7 @@ jobs:
       - uses: actions/setup-python@v2
         name: Install Python
         with:
-          python-version: "3.8"
+          python-version: "3.10"
 
       - name: Set up QEMU
         if: runner.os == 'Linux'
@@ -138,7 +136,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: pypa/gh-action-pypi-publish@master
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
+     # - uses: pypa/gh-action-pypi-publish@master
+     #   with:
+     #     user: __token__
+     #     password: ${{ secrets.PYPI_TOKEN }}
